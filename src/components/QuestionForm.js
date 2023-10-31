@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+/*import React, { useState } from "react";
 
 function QuestionForm(props) {
   const [formData, setFormData] = useState({
@@ -90,4 +90,33 @@ function QuestionForm(props) {
   );
 }
 
-export default QuestionForm;
+export default QuestionForm;*/
+
+
+
+
+
+function handleSubmit(event) {
+  event.preventDefault();
+
+  // Prepare the data to send
+  const postData = {
+    prompt: formData.prompt,
+    answers: [formData.answer1, formData.answer2, formData.answer3, formData.answer4],
+    correctIndex: parseInt(formData.correctIndex),
+  };
+
+  // Make a POST request to create a new question
+  fetch("http://localhost:4000/questions", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(postData),
+  })
+    .then((response) => response.json())
+    .then((newQuestion) => {
+      // Update state with the new question
+      // You can add the new question to the list of questions in QuestionList component
+    });
+}
